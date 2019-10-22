@@ -7,7 +7,7 @@ ENV LANG C.UTF-8
 ADD sources.list /etc/apt/
 RUN apt-get update \
 	&& apt-get install -y \
-		wget python3-minimal python3-pip python3-pip \
+		wget git rsync python3-all python3-pip \
 	&& apt-get build-dep -y python3.5 \
 	&& apt-get clean
 
@@ -27,7 +27,10 @@ RUN /tmp/python-install.sh altinstall 3.4.10 /opt/py34
 RUN apt-get install -y libssl-dev
 
 # Update PATH to use installed pythons
-ENV PATH /opt/py34/bin:/opt/py35/bin:/opt/py36/bin:/opt/py37/bin:/opt/py38/bin:$PATH
+ENV PATH /opt/py38/bin:$PATH
+ENV PATH /opt/py37/bin:$PATH
+ENV PATH /opt/py36/bin:$PATH
+ENV PATH /opt/py34/bin:$PATH
 
 # Install tox
 RUN pip3 install tox
