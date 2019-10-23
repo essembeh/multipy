@@ -10,7 +10,5 @@ Docker image containing
 
 ```sh
 $ cd myproject/
-$ docker run --rm --volume $PWD:/src --user 1000 essembeh/multipy:latest tox
-# Or a 'readonly' way
-$ docker run --rm --volume $PWD:/src:ro essembeh/multipy:latest sh -c 'cp -R /src /work && cd /work && tox'
+$ docker run --rm --volume $PWD:/src:ro essembeh/multipy:latest sh -c 'cp -R /src ~/src && cd ~/src && tox'
 ```

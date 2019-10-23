@@ -6,9 +6,9 @@ ENV LANG C.UTF-8
 # Custom apt-get source file and prereq install
 ADD sources.list /etc/apt/
 RUN apt-get update \
-	&& apt-get install -y \
+	&& apt-get install --yes \
 		wget git rsync python3-all python3-pip \
-	&& apt-get build-dep -y python3.5 \
+	&& apt-get build-dep --yes python3.5 \
 	&& apt-get clean
 
 # Script to isntall python
@@ -22,9 +22,9 @@ RUN /tmp/python-install.sh altinstall 3.6.9 /opt/py36
 # Python 3.5 is default stretch
 
 # Trick to install python 3.4
-RUN apt-get install -y libssl1.0-dev
+RUN apt-get install --yes libssl1.0-dev
 RUN /tmp/python-install.sh altinstall 3.4.10 /opt/py34
-RUN apt-get install -y libssl-dev
+RUN apt-get install --yes libssl-dev
 
 # Update PATH to use installed pythons
 ENV PATH /opt/py38/bin:$PATH
@@ -34,3 +34,8 @@ ENV PATH /opt/py34/bin:$PATH
 
 # Install tox
 RUN pip3 install tox
+
+# Create tox user
+RUN useradd --create-home --shell /bin/bash tox
+USER tox
+WORKDIR /home/tox
