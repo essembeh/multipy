@@ -35,7 +35,17 @@ ENV PATH /opt/py34/bin:$PATH
 # Install tox
 RUN pip3 install tox
 
+# Install extra packages
+ARG APT_EXTRA_PACKAGES=
+RUN apt-get update \
+	&& apt-get install --yes \
+		${APT_EXTRA_PACKAGES} \
+	&& apt-get clean
+	
 # Create tox user
 RUN useradd --create-home --shell /bin/bash tox
 USER tox
 WORKDIR /home/tox
+
+ADD entrypoint.sh /home/tox/
+ENTRYPOINT ["/home/tox/entrypoint.sh"]
