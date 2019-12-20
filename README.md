@@ -2,13 +2,12 @@
 
 # MultiPy
 
-MultiPy is a [Docker](https://docker.io) image to use Python [Tox](https://tox.readthedocs.io) with `py34`, `py35`, `py36`, `py37` and `py38` environments.
+MultiPy is a [Docker](https://docker.io) image to use Python [Tox](https://tox.readthedocs.io) with `py35`, `py36`, `py37` and `py38` environments.
 
 The docker image contains:
-- Python 3.4: installed from sources
-- Python 3.5: packaged in Debian Stretch
+- Python 3.5: installed from sources
 - Python 3.6: installed from sources
-- Python 3.7: installed from sources
+- Python 3.7: packaged in Debian Buster
 - Python 3.8: installed from sources
 - Tox: installed with `pip`
 - an `entrypoint.sh` to simplify the usage
