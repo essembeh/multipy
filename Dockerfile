@@ -15,8 +15,9 @@ RUN apt-get update \
 # Script to isntall python
 ADD python-install.sh /tmp
 
+## Get latest versions from https://www.python.org/downloads/
 # Supported python environments
-RUN /tmp/python-install.sh altinstall 3.8.1 /opt/py38
+RUN /tmp/python-install.sh altinstall 3.8.3 /opt/py38
 # Python 3.7 is default stretch
 RUN /tmp/python-install.sh altinstall 3.6.10 /opt/py36
 RUN /tmp/python-install.sh altinstall 3.5.9 /opt/py35
